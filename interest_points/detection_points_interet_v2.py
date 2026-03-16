@@ -1,9 +1,6 @@
-import sys
 import cv2 as cv
-import numpy as np
-import math
 
-FRAME_100 = "/home/henry/Bureau/L3/S6/Vision embarquée et Intelligence artificielle/Tp7/points_interet.jpg"
+FRAME_100 = "interest_points/points_interet.jpg"
 
 def main():
     cam = 0  
@@ -15,7 +12,7 @@ def main():
         ret, src = cap.read()
         count_frame += 1
         if count_frame == 50:
-            cv.imwrite("Tp7/points_interet.jpg", src)
+            cv.imwrite(FRAME_100, src)
             print ("Frame 50 saved as points_interet.jpg")
         gray = cv.cvtColor(src, cv.COLOR_BGR2GRAY)
         gray = cv.GaussianBlur(gray, (21, 21), 0)
@@ -42,10 +39,6 @@ def main():
  
  
 if __name__ == "__main__":
-    print(FRAME_100)
     main()
 
-
-    # Bruno Lescalier systel de la par de menard
-    # vision singal analyse de données 
     

@@ -1,7 +1,5 @@
-import sys
 import cv2 as cv
 import numpy as np
-import math
  
 def alpha_mask(frame, img_with_alpha, orig=None, threshold=0):
     """Insert an image with alpha channel into another image. """

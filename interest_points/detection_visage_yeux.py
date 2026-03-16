@@ -1,7 +1,5 @@
-import sys
 import cv2 as cv
-import numpy as np
-import math
+
 
 FRAME_100 = "/home/henry/Bureau/L3/S6/Vision embarquée et Intelligence artificielle/Tp7/cascade.jpg"
 
