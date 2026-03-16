@@ -8,7 +8,7 @@ def main():
     cam = 0  # capture from camera at location 0
     cap = cv.VideoCapture(cam)
     cap.set(cv.CAP_PROP_FPS, 25)
-    data = np.load("/charuco_calibration.npz")
+    data = np.load("./circle_detection/charuco_calibration.npz")
 
     camera_matrix = data['camera_matrix'] 
     dist_coeff = data['dist_coeff']    

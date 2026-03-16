@@ -12,7 +12,7 @@ cap.set(cv2.CAP_PROP_FPS, 30)
 
 
 def loadCameraCalibration(w, h):
-    cpf = f"calibration{w}x{h}.yaml"
+    cpf = f"./aruco_pose/calibration{w}x{h}.yaml"
     fs = cv2.FileStorage(cpf, cv2.FILE_STORAGE_READ)
     if fs.isOpened():
         camMatrix = fs.getNode("camera_matrix").mat()
@@ -89,7 +89,7 @@ while True:
         cv2.polylines(outimg, [pts[4:]], True, (0, 0, 255), 2)
         for j in range(4):
             cv2.line(outimg, pts[j], pts[j+4], (0, 0, 255), 2)
-        outimg = cv2.addWeighted(outimg, 1, incrustation_image(pts[4:], "GreenEye.png"), 1, 0)
+        outimg = cv2.addWeighted(outimg, 1, incrustation_image(pts[4:], "./aruco_pose/GreenEye.png"), 1, 0)
         
     cv2.imshow("output", outimg)
     key = cv2.waitKey(1)

@@ -1,5 +1,19 @@
 # Computer-Vision-Toolbox
 
+## Modules
+
+### 📷 `camera_calibration/`
+Calibration intrinsèque d'une caméra avec un plateau **ChArUco** (marqueurs ArUco + échiquier).
+
+- Capture interactive : appuyer sur `ESPACE` pour capturer une image, `q` pour terminer.
+- Utilise la nouvelle API `cv2.aruco.CharucoDetector`.
+- Sauvegarde les paramètres dans `charuco_calibration.npz` (`camera_matrix`, `dist_coeff`).
+
+**Usage :**
+```bash
+python camera_calibration/calib_charuco.py
+```
+
 ### `circle_detection/`
 Détection en temps réel d'un **objet circulaire jaune** via segmentation couleur en espace HSV.
 
