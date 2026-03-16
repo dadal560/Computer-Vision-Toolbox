@@ -24,3 +24,13 @@ $$d = \frac{D_{réel} \times f}{2\sqrt{A/\pi}}$$
 avec $D_{réel}$ = 4 cm et $f$ la focale extraite de `charuco_calibration.npz`.
 
 Requiert `charuco_calibration.npz` pour la version avec estimation de distance.
+
+---
+
+### 🎨 `color_detection/`
+Interface interactive pour calibrer un masque de couleur en espace **HSV**.
+
+- Six trackbars pour ajuster H/S/V min et max en temps réel.
+- Utile pour trouver les plages HSV avant de les coder en dur dans un autre script.
+
+---
