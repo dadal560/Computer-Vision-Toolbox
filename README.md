@@ -2,7 +2,7 @@
 
 ## Modules
 
-### 📷 `camera_calibration/`
+### `camera_calibration/`
 Calibration intrinsèque d'une caméra avec un plateau **ChArUco** (marqueurs ArUco + échiquier).
 
 - Capture interactive : appuyer sur `ESPACE` pour capturer une image, `q` pour terminer.
@@ -71,7 +71,7 @@ Détection de visage avec incrustation d'éléments graphiques via canal alpha.
 
 ---
 
-### 🔍 `interest_points/`
+### `interest_points/`
 Détection de points d'intérêt et reconnaissance de visages.
 
 | Script | Description |
