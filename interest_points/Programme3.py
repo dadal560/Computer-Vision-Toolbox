@@ -12,7 +12,7 @@ def frame_cascade(src, face_cascade, eyes_cascade, gray, orb, colorface=(255, 0,
     for (x,y,w,h) in faces:
         frameface = cv.rectangle(src, (x,y), (x+w, y+h), colorface, 2)
         faceROI = frame_gray[y:y+h,x:x+w]
-        point_interet(orb,faceROI,src)
+        point_interet(orb, faceROI, src, x, y)
         eyeRoi = faceROI[0:int(h/2), :]
         eyes = eyes_cascade.detectMultiScale(eyeRoi)
         for (x2,y2,w2,h2) in eyes:
@@ -20,10 +20,11 @@ def frame_cascade(src, face_cascade, eyes_cascade, gray, orb, colorface=(255, 0,
             radius = int(round((w2 + h2)*0.25))
             cv.circle(frameface, eye_center, radius, color, 2)
 
-def point_interet(orb, grayface,src):
-    keyPoint, des = orb.detectAndCompute(grayface, None)
-    img=cv.drawKeypoints(grayface, keyPoint, None, color=(0, 255, 0), flags=0)
-    cv.imshow("",img)
+def point_interet(orb, grayface, src, x, y):
+    keyPoints, des = orb.detectAndCompute(grayface, None)
+    for kp in keyPoints:
+        kp.pt = (kp.pt[0] + x, kp.pt[1] + y)  # repositionner dans l'image globale
+    cv.drawKeypoints(src, keyPoints, None, color=(0, 255, 0))
 
 
 def main():
