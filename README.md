@@ -1,6 +1,6 @@
 # Computer-Vision-Toolbox
 
-### ⭕ `circle_detection/`
+### `circle_detection/`
 Détection en temps réel d'un **objet circulaire jaune** via segmentation couleur en espace HSV.
 
 **Pipeline commun :**
@@ -27,10 +27,18 @@ Requiert `charuco_calibration.npz` pour la version avec estimation de distance.
 
 ---
 
-### 🎨 `color_detection/`
+### `color_detection/`
 Interface interactive pour calibrer un masque de couleur en espace **HSV**.
 
 - Six trackbars pour ajuster H/S/V min et max en temps réel.
 - Utile pour trouver les plages HSV avant de les coder en dur dans un autre script.
 
 ---
+
+### `aruco_pose/`
+Détection de marqueurs ArUco avec estimation de pose 6DoF et réalité augmentée.
+
+- Estimation de pose via `solvePnP` (méthode `IPPE_SQUARE`).
+- Dessin d'un cube 3D sur le marqueur.
+- Incrustation d'une image (`GreenEye.png`) sur la face supérieure du cube via homographie.
+- Requiert un fichier de calibration YAML : `calibration640x480.yaml`.
