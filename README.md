@@ -56,3 +56,15 @@ Détection de marqueurs ArUco avec estimation de pose 6DoF et réalité augment�
 - Dessin d'un cube 3D sur le marqueur.
 - Incrustation d'une image (`GreenEye.png`) sur la face supérieure du cube via homographie.
 - Requiert un fichier de calibration YAML : `calibration640x480.yaml`.
+
+### `face_filters/`
+Détection de visage avec incrustation d'éléments graphiques via canal alpha.
+
+**`haar_face_filters.py`** — filtre facial en temps réel :
+- Détecte visage, yeux, nez et bouche via **Haar Cascades**
+- Incruste une moustache PNG redimensionnée dynamiquement sur la bouche détectée
+- Utilise `alpha_mask()` pour respecter la transparence du PNG
+- Requiert `mustache.png` et les cascades custom `haarcascade_mcs_nose.xml` / `haarcascade_mcs_mouth.xml`
+
+> Les cascades nez/bouche ne sont pas incluses dans OpenCV par défaut —
+> les placer dans le dossier `face_filters/` avant d'exécuter.
