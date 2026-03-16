@@ -74,11 +74,11 @@ Détection de visage avec incrustation d'éléments graphiques via canal alpha.
 ### `interest_points/`
 Détection de points d'intérêt et reconnaissance de visages.
 
-| Script | Description |
+ Script | Description |
 |--------|-------------|
-| `Détection_de_points_d'intérêt.py` | ORB sur flux caméra avec flou gaussien |
-| `Détection_de_points_d'intérêtV2.py` | Compare les points ORB du flux en direct avec une frame de référence (frame 50) |
-| `Détection_visage-yeux.py` | Haar Cascade frontal face + eyes, avec comparaison live vs frame figée |
+| `detection_points_interet.py` | ORB sur flux caméra avec flou gaussien |
+| `detection_points_interet_v2.py` | Compare les points ORB du flux en direct avec une frame de référence (frame 50) |
+| `detection_visage_yeux.py` | Haar Cascade frontal face + eyes, avec comparaison live vs frame figée 
 | `detection_points_visage_roi.py` | ORB restreint à la région d'intérêt (ROI) du visage détecté avec Haar Cascade frontal face + eyes |
 
 ---
