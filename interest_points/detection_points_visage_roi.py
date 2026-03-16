@@ -7,15 +7,12 @@ def point_interet(orb, grayface, src, x, y):
         return
     for kp in keyPoints:
         kp.pt = (kp.pt[0] + x, kp.pt[1] + y)
-    cv.drawKeypoints(src, keyPoints, src, color=(0, 255, 0),
-                     flags=cv.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+    cv.drawKeypoints(src, keyPoints, src, color=(0, 255, 0),flags=cv.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
 
 
-def frame_cascade(src, face_cascade, eyes_cascade, gray, orb,
-                  colorface=(255, 0, 0), color=(0, 255, 0)):
+def frame_cascade(src, face_cascade, eyes_cascade, gray, orb,colorface=(255, 0, 0), color=(0, 255, 0)):
     frame_gray = cv.equalizeHist(gray)
-    faces = face_cascade.detectMultiScale(frame_gray, scaleFactor=1.2,
-                                          minNeighbors=5, minSize=(60, 60))
+    faces = face_cascade.detectMultiScale(frame_gray, scaleFactor=1.2,minNeighbors=5, minSize=(60, 60))
     for (x, y, w, h) in faces:
         cv.rectangle(src, (x, y), (x + w, y + h), colorface, 2)
         faceROI = frame_gray[y:y + h, x:x + w]
@@ -32,10 +29,8 @@ def main():
     cap = cv.VideoCapture(0)
     cap.set(cv.CAP_PROP_FPS, 25)
     orb = cv.ORB_create(nfeatures=500, scoreType=cv.ORB_FAST_SCORE)
-    face_cascade = cv.CascadeClassifier(
-        cv.data.haarcascades + "haarcascade_frontalface_default.xml")
-    eyes_cascade = cv.CascadeClassifier(
-        cv.data.haarcascades + "haarcascade_eye.xml")
+    face_cascade = cv.CascadeClassifier(cv.data.haarcascades + "haarcascade_frontalface_default.xml")
+    eyes_cascade = cv.CascadeClassifier(cv.data.haarcascades + "haarcascade_eye.xml")
 
     while True:
         ret, src = cap.read()
@@ -43,7 +38,7 @@ def main():
             break
         gray = cv.cvtColor(src, cv.COLOR_BGR2GRAY)
         frame_cascade(src, face_cascade, eyes_cascade, gray, orb)
-        cv.imshow("detected", src)
+        cv.imshow("detected points", src)
         if cv.waitKey(1) == 27:
             break
 
