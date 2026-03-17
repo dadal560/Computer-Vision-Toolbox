@@ -1,0 +1,3 @@
+*.npz
+*.yaml
+__pycache__/
