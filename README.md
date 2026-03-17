@@ -74,11 +74,37 @@ Détection de visage avec incrustation d'éléments graphiques via canal alpha.
 ### `interest_points/`
 Détection de points d'intérêt et reconnaissance de visages.
 
- Script | Description |
+| Script | Description |
 |--------|-------------|
 | `detection_points_interet.py` | ORB sur flux caméra avec flou gaussien |
 | `detection_points_interet_v2.py` | Compare les points ORB du flux en direct avec une frame de référence (frame 50) |
-| `detection_visage_yeux.py` | Haar Cascade frontal face + eyes, avec comparaison live vs frame figée 
+| `detection_visage_yeux.py` | Haar Cascade frontal face + eyes, avec comparaison live vs frame figée |
 | `detection_points_visage_roi.py` | ORB restreint à la région d'intérêt (ROI) du visage détecté avec Haar Cascade frontal face + eyes |
+| `lena_demo.py` | Démo statique sur `lena.jpg` : Haar Cascade (visage + yeux) + ORB sur ROI |
 
 ---
+
+#### `detection_points_visage_roi.py` — Paramètres détaillés
+
+Ce script combine la détection de visage par **Haar Cascade** et l'extraction de points d'intérêt **ORB** restreinte à la ROI du visage.
+
+**Haar Cascade — `detectMultiScale`**
+| Paramètre | Valeur par défaut | Description |
+|-----------|-------------------|-------------|
+| `scaleFactor` | `1.2` | Facteur de réduction de l'image à chaque échelle. Plus proche de 1.0 = plus précis mais plus lent |
+| `minNeighbors` | `5` | Nombre de détections voisines requises pour valider un visage. Augmenter réduit les faux positifs |
+| `minSize` | `(60, 60)` | Taille minimale du visage détecté en pixels. Ignorer les visages trop petits |
+
+**ORB — `ORB_create`**
+| Paramètre | Valeur par défaut | Description |
+|-----------|-------------------|-------------|
+| `nfeatures` | `500` | Nombre maximum de points d'intérêt à détecter. Réduire pour alléger l'affichage |
+| `scoreType` | `ORB_FAST_SCORE` | Méthode de scoring : `ORB_FAST_SCORE` (rapide) ou `ORB_HARRIS_SCORE` (plus précis) |
+| `scaleFactor` | `1.2` | Facteur de l'image pyramidale entre chaque niveau |
+| `nlevels` | `8` | Nombre de niveaux de la pyramide. Réduire pour ignorer les petits détails |
+
+**Flags de dessin — `drawKeypoints`**
+| Flag | Rendu |
+|------|-------|
+| `DRAW_MATCHES_FLAGS_DEFAULT` | Petits points fixes, sans orientation ni taille |
+| `DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS` | Cercles avec taille et orientation (plus verbeux) |
