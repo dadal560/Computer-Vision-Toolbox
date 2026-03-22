@@ -2,15 +2,15 @@ import cv2 as cv
 
 
 def point_interet(orb, grayface, src, x, y):
-    keyPoints, des = orb.detectAndCompute(grayface, None)
-    if not keyPoints:
+    keypoints, descripteurs = orb.detectAndCompute(grayface, None)
+    if not keypoints:
         return
-    for kp in keyPoints:
+    for kp in keypoints:
         kp.pt = (kp.pt[0] + x, kp.pt[1] + y)
-    cv.drawKeypoints(src, keyPoints, src, color=(0, 255, 0),flags=cv.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+    cv.drawKeypoints(src, keypoints, src, color=(0, 255, 0),flags=cv.DRAW_MATCHES_FLAGS_DEFAULT)
 
 
-def frame_cascade(src, face_cascade, eyes_cascade, gray, orb,colorface=(255, 0, 0), color=(0, 255, 0)):
+def frame_cascade(src, face_cascade, eyes_cascade, gray, orb,colorface=(255, 0, 0), color=(0, 0, 255)):
     frame_gray = cv.equalizeHist(gray)
     faces = face_cascade.detectMultiScale(frame_gray, scaleFactor=1.2,minNeighbors=5, minSize=(60, 60))
     for (x, y, w, h) in faces:
@@ -26,7 +26,8 @@ def frame_cascade(src, face_cascade, eyes_cascade, gray, orb,colorface=(255, 0, 
 
 
 def main():
-    cap = cv.VideoCapture(0)
+    cam = 0
+    cap = cv.VideoCapture(cam)
     cap.set(cv.CAP_PROP_FPS, 25)
     orb = cv.ORB_create(nfeatures=500, scoreType=cv.ORB_FAST_SCORE)
     face_cascade = cv.CascadeClassifier(cv.data.haarcascades + "haarcascade_frontalface_default.xml")
