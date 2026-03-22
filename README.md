@@ -80,6 +80,7 @@ Détection de points d'intérêt et reconnaissance de visages.
 | `detection_points_interet_v2.py` | Compare les points ORB du flux en direct avec une frame de référence (frame 50) |
 | `detection_visage_yeux.py` | Haar Cascade frontal face + eyes, avec comparaison live vs frame figée |
 | `detection_points_visage_roi.py` | ORB restreint à la région d'intérêt (ROI) du visage détecté avec Haar Cascade frontal face + eyes |
+| `face_points_matching.py` | Détection multi-visages et matching (appariement) des points d'intérêt entre les deux premiers visages détectés via BFMatcher |
 | `lena_demo.py` | Démo statique sur `lena.jpg` : Haar Cascade (visage + yeux) + ORB sur ROI |
 
 ---
