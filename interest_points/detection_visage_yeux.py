@@ -1,7 +1,7 @@
 import cv2 as cv
 
 
-FRAME_100 = "/home/henry/Bureau/L3/S6/Vision embarquée et Intelligence artificielle/Tp7/cascade.jpg"
+FRAME_100 = "Tp7/detected_frame.jpg"
 
 def frame_cascade(src, face_cascade, eyes_cascade, gray, colorface=(255, 0, 0), color=(0, 255, 0)):
     frame_gray = cv.equalizeHist(gray)
@@ -25,27 +25,25 @@ def main():
     face_cascade = cv.CascadeClassifier(cv.data.haarcascades + "haarcascade_frontalface_default.xml")
     eyes_cascade = cv.CascadeClassifier(cv.data.haarcascades + "haarcascade_eye.xml")
     count_frame = 0
+    frame100 = cv.imread(FRAME_100)
     while True:
         rect, src = cap.read()
         gray = cv.cvtColor(src, cv.COLOR_BGR2GRAY)
         count_frame += 1
-        if count_frame == 50:
-            cv.imwrite("Tp7/cascade.jpg", src)
-            print ("Frame 50 saved as cascade.jpg")
-        if count_frame >= 101 and count_frame <= 200:
-            frame100 = cv.imread(FRAME_100)
-            gray100 = cv.cvtColor(frame100, cv.COLOR_BGR2GRAY)
-            frame_cascade(src, face_cascade, eyes_cascade, gray, colorface=(255, 0, 0), color=(0, 255, 0))
-            frame_cascade(src, face_cascade, eyes_cascade, gray100, colorface=(0, 255, 0), color=(255, 0, 0))
-            cv.imshow("detected100", src)
-        elif count_frame > 200:
-            cv.destroyWindow("detected100")
-            frame_cascade(src, face_cascade, eyes_cascade, gray, colorface=(255, 0, 0), color=(0, 255, 0))
+        gray100 = cv.cvtColor(frame100, cv.COLOR_BGR2GRAY)
+        if count_frame < 100:
+            cv.imshow("detected", src)
+        elif 100 <= count_frame <= 200:
+            img = frame100.copy()
+            frame_cascade(img, face_cascade, eyes_cascade, gray,colorface=(0,255,0), color=(255,0,0))
+            frame_cascade(img, face_cascade, eyes_cascade, gray100,colorface=(255,0,0), color=(0,255,0))
+            cv.imshow("detected", img)
+        else:
+            frame_cascade(src, face_cascade, eyes_cascade, gray)
             cv.imshow("detected", src)
         key = cv.waitKey(1)
         if key == 27:
             break
-
     cap.release()
     cv.destroyAllWindows()
  
